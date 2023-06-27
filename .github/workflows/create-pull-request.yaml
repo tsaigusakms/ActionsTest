@@ -25,4 +25,4 @@ jobs:
         if: ${{ steps.check_pr.outputs.pr_count == 0 }}
         run: |
           COMMENT="ステージング環境用("$(date -d '1 days' '+%Y/%m/%d')"マージ分)のプルリクエストです。"
-          gh pr create -B staging -H develop -t "[🤖AUTO] Staging "$(date -d '1 days' '+%Y%m%d') -b $COMMENT
+          gh pr create -B staging -H develop -t "🤖AUTO / Staging "$(date -d '1 days' '+%Y%m%d') -b $COMMENT
