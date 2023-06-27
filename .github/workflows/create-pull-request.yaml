@@ -10,6 +10,7 @@ jobs:
 
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TZ: "Asia/Tokyo"
 
     steps:
       - uses: actions/checkout@v2
@@ -17,10 +18,10 @@ jobs:
       - name: 🔎 Check if a pull request exists
         id: check_pr
         run: |
-          gh pr list -B staging -H develop | wc -l
+          echo "Pull requests from develop to staging count: "$(gh pr list -B staging -H develop | wc -l)
           echo "pr_count="$(gh pr list -B staging -H develop | wc -l) >> $GITHUB_OUTPUT
 
       - name: 📝 Create Pull request for staging
         if: ${{ steps.check_pr.outputs.pr_count == 0 }}
         run: |
-          gh pr create -B staging -H develop -t "Staging test" -b ""
+          gh pr create -B staging -H develop -t "Staging "$(date +"%Y%m%d") -b ""
