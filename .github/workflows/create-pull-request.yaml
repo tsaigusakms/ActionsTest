@@ -24,4 +24,5 @@ jobs:
       - name: 📝 Create Pull request for staging
         if: ${{ steps.check_pr.outputs.pr_count == 0 }}
         run: |
-          gh pr create -B staging -H develop -t "Staging "$(date -d '1 days' '+%Y%m%d') -b ""
+          COMMENT="ステージング環境用("$(date -d '1 days' '+%Y/%m/%d')"マージ分)のプルリクエストです。"
+          gh pr create -B staging -H develop -t "🤖AUTO Staging "$(date -d '1 days' '+%Y%m%d') -b $COMMENT
