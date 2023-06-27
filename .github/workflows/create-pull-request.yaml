@@ -16,6 +16,7 @@ jobs:
       - name: 🔎 Check if a pull request exists
         id: check_pr
         run: |
+          gh pr list -B staging -h develop
           echo "::set-output name=prCount::$(gh pr list -B staging -h develop | wc -l)"
 
       - name: 📝 Create Pull request for staging
