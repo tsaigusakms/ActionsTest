@@ -1,6 +1,7 @@
 name: 📚 Create Pull request for staging
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
@@ -17,9 +18,10 @@ jobs:
         id: check_pr
         run: |
           gh pr list -B staging -H develop | wc -l
-          echo "prCount="$(gh pr list -B staging -h develop | wc -l) >> $GITHUB_OUTPUT
+          echo "pr_count="$(gh pr list -B staging -h develop | wc -l)
+          echo "pr_count="$(gh pr list -B staging -h develop | wc -l) >> $GITHUB_OUTPUT
 
       - name: 📝 Create Pull request for staging
-        if: ${{ steps.check_pr.outputs.prCount == 0 }}
+        if: ${{ steps.check_pr.outputs.pr_count == 0 }}
         run: |
           gh pr create -B staging -H develop -t "Staging test" -b ""
