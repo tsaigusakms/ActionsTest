@@ -20,6 +20,6 @@ jobs:
           echo "$(gh pr list -B staging -h develop | wc -l)">> $PULLREQUEST_COUNT
 
       - name: 📝 Create Pull request for staging
-        if: ${{ $PULLREQUEST_COUNT == 0 }}
+        if: $PULLREQUEST_COUNT == 0
         run: |
           gh pr create -B staging -H develop -t "Staging test" -b ""
