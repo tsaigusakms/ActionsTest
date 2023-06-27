@@ -1,0 +1,24 @@
+name: 📚 Create Pull request for staging
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: 🔎 Check if a pull request exists
+        id: check_pr
+        run: |
+          echo "::set-output name=prCount::$(gh pr list -S 'Staging in:title' -B develop | wc -l)"
+
+      - name: 📝 Create Pull request for staging
+        if: ${{ steps.check_pr.outputs.prCount == 0 }}
+        run: |
+          gh pr create -B develop -t "Staging test" -b ""
