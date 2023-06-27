@@ -24,4 +24,4 @@ jobs:
       - name: 📝 Create Pull request for staging
         if: ${{ steps.check_pr.outputs.pr_count == 0 }}
         run: |
-          gh pr create -B staging -H develop -t "Staging "$(date +"%Y%m%d") -b ""
+          gh pr create -B staging -H develop -t "Staging "$(date -d '1 days' '+%Y%m%d') -b ""
