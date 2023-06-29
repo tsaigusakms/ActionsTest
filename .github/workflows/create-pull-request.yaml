@@ -17,14 +17,14 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       TZ: "Asia/Tokyo"
 
+    steps:
+      - uses: actions/checkout@v2
+
       - name: "📐 Summary deployment plan"
         run: |
           echo ${{ env.NOTICE_START_HOUR }} : ${{ env.CURRENT_HOUR }} : ${{ env.NOTICE_END_HOUR }}
           echo ${{ env.NOTICE_START_HOUR <= env.CURRENT_HOUR }}
           echo ${{ env.CURRENT_HOUR <= env.NOTICE_END_HOUR }}
-
-    steps:
-      - uses: actions/checkout@v2
 
       - name: 🔎 Check if a pull request exists
         id: check_pr
