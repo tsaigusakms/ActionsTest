@@ -20,6 +20,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: "📝 Generate CD Version"
+        env:
+          TZ: "Asia/Tokyo"
+        run: |
+          echo "CURRENT_HOUR="$(date +"%H") >> $GITHUB_ENV
+
       - name: "📐 Summary deployment plan"
         run: |
           echo ${{ env.NOTICE_START_HOUR }} : ${{ env.CURRENT_HOUR }} : ${{ env.NOTICE_END_HOUR }}
