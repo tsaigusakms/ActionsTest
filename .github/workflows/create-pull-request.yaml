@@ -29,6 +29,7 @@ jobs:
           echo ${{ env.NOTICE_START_HOUR }} : ${{ env.CURRENT_HOUR }} : ${{ env.NOTICE_END_HOUR }}
           echo ${{ env.NOTICE_START_HOUR <= env.CURRENT_HOUR }}
           echo ${{ env.NOTICE_START_HOUR <= env.NOTICE_END_HOUR }}
+          echo ${{ env.NOTICE_START_HOUR == env.NOTICE_START_HOUR }}
           echo ${{ env.CURRENT_HOUR <= env.NOTICE_END_HOUR }}
 
       - name: 🔎 Check if a pull request exists
