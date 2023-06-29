@@ -6,8 +6,8 @@ on:
     - cron: "0 20 * * *" # UTCで設定 (日本時間-9時間)
 
 env:
-  NOTICE_START_HOUR: '9'
-  NOTICE_END_HOUR: '21'
+  NOTICE_START_HOUR: 9
+  NOTICE_END_HOUR: 21
 
 jobs:
   create-pr:
@@ -27,7 +27,8 @@ jobs:
       - name: "📐 Summary deployment plan"
         run: |
           echo ${{ env.NOTICE_START_HOUR }} : ${{ env.CURRENT_HOUR }} : ${{ env.NOTICE_END_HOUR }}
-          echo ${{ env.CURRENT_HOUR >= env.NOTICE_START_HOUR }}
+          echo ${{ env.NOTICE_START_HOUR <= env.CURRENT_HOUR }}
+          echo ${{ env.NOTICE_START_HOUR <= env.NOTICE_END_HOUR }}
           echo ${{ env.CURRENT_HOUR <= env.NOTICE_END_HOUR }}
 
       - name: 🔎 Check if a pull request exists
