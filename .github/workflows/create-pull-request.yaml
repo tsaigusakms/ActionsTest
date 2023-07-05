@@ -8,6 +8,7 @@ on:
 env:
   NOTICE_START_HOUR: ${{ fromJSON(9) }}
   NOTICE_END_HOUR: ${{ fromJSON(21) }}
+  HELLO_WORLD: ${{ vars.HELLO_WORLD }}
 
 jobs:
   create-pr:
